@@ -1,0 +1,12 @@
+<?php
+
+/** @var $viewModel ICreative\HeaderContact\ViewModel\Phone */
+/** @var $block ICreative\HeaderContact\Block\Phone */
+
+$viewModel = $block->getViewModel();
+
+?>
+<div class="phone">
+    hi
+    <?= $block->escapeHtml($viewModel->getStorePhone()); ?>
+</div>

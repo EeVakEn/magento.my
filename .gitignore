@@ -1,25 +1,79 @@
-# Metadata
 /.buildpath
 /.cache
 /.metadata
 /.project
 /.settings
+/.vscode
 atlassian*
 /nbproject
+/robots.txt
+/pub/robots.txt
 /sitemap
-/.idea
+/sitemap.xml
+/pub/sitemap
+/pub/sitemap.xml
 /.gitattributes
+/app/config_sandbox
+/app/etc/env.php
+/app/code/Magento/TestModule*
+/lib/internal/flex/uploader/.actionScriptProperties
+/lib/internal/flex/uploader/.flexProperties
+/lib/internal/flex/uploader/.project
+/lib/internal/flex/uploader/.settings
+/lib/internal/flex/varien/.actionScriptProperties
+/lib/internal/flex/varien/.flexLibProperties
+/lib/internal/flex/varien/.project
+/lib/internal/flex/varien/.settings
+/.grunt
+/Gruntfile.js
+/package.json
+/.php_cs
+/.php_cs.cache
+/grunt-config.json
+/dev
+/dev/tools/grunt/configs/local-themes.js
 
-# Magento specific configuration
-/app/.htaccess
-/app/bootstrap.php
-/app/autoload.php
-/app/functions.php
-/app/etc/di.xml
-/app/etc/vendor_path.php
-/app/etc/NonComposerComponentRegistration.php
+/pub/media/*.*
+!/pub/media/.htaccess
+/pub/media/attribute/*
+!/pub/media/attribute/.htaccess
+/pub/media/analytics/*
+/pub/media/catalog/*
+!/pub/media/catalog/.htaccess
+/pub/media/contentmanager/*
+!/pub/media/contentmanager/.htaccess
+/pub/media/customer/*
+!/pub/media/customer/.htaccess
+/pub/media/downloadable/*
+!/pub/media/downloadable/.htaccess
+/pub/media/favicon/*
+/pub/media/import/*
+!/pub/media/import/.htaccess
+/pub/media/logo/*
+/pub/media/theme/*
+/pub/media/theme_customization/*
+!/pub/media/theme_customization/.htaccess
+/pub/media/wysiwyg/*
+!/pub/media/wysiwyg/.htaccess
+/pub/media/tmp/*
+!/pub/media/tmp/.htaccess
+/pub/media/captcha/*
+/pub/static/*
+!/pub/static/.htaccess
+
+/pub/media/lfa
+
+/var/*
+!/var/.htaccess
+/vendor/*
+!/vendor/.htaccess
+/generated/*
+!/generated/.htaccess
+.DS_Store
 
 # Files re-generated through composer
+/.htaccess.sample
+/auth.json.sample
 /CHANGELOG.md
 /CONTRIBUTING.md
 /COPYING.txt
@@ -27,20 +81,25 @@ atlassian*
 /LICENSE_AFL.txt
 /LICENSE.txt
 /Gruntfile.js.sample
+/grunt-config.json.sample
+/LICENSE.txt
+/LICENSE_AFL.txt
 /nginx.conf.sample
 /package.json.sample
-/php.ini.sample
-/vendor
-/bin
-/dev
-/lib
-/pub
-/setup
-/var
-/generated/*
 
-# Excludes (or a better alternative might be to symlink this to shared folders
-!/pub/media/catalog
-!/pub/media/downloadable
-!/var/composer_home
-!/generated/.htaccess
+/app/etc/config.php
+
+# Magepack individually generate sh
+/magepack/generate.sh
+
+# dependencies
+node_modules
+package-lock.json
+
+# logs & pids
+*.log
+pids
+
+# Editors
+**/.idea
+**/.#*

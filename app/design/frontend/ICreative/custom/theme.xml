@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
+    <title>ICreative Custom</title>
+    <parent>Magento/luma</parent>
+</theme>
+
+
+<!--    Чтобы Magento 2 смогла увидеть созданную тему, необходимо создать файл:-->
+<!--    В теге title указывается название темы-->
+<!--    В parent указывается тема, которая устанавливается как родительская (все ненайденные статические файлы/файлы шаблонов будут браться с родительской темы)-->
+
+
