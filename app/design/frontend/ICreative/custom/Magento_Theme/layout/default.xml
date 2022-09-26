@@ -11,7 +11,8 @@
             </arguments>
         </referenceBlock>
         <referenceBlock name="header-wrapper">
-            <container name="header.left" htmlClass="header-left" htmlTag="div"/>
+            <referenceContainer name="compare-link-wrapper" remove="true"/>
+            <container name="header.left" htmlClass="header-left" htmlTag="div" before="header.right"/>
             <container name="header.right" htmlClass="header-rigth" htmlTag="div">
                 <container htmlClass="header-contact" name="header.contact" htmlTag="div">
                     <block name="header_contact" class="ICreative\HeaderContact\Block\Phone" template="ICreative_HeaderContact::header_contacts.phtml">
@@ -26,7 +27,7 @@
         <!--Move to header-->
         <move element="logo" destination="header.left" before="-"/>
         <move element="navigation.sections" destination="header.left" after="logo"/>
-        <move element="top.search" destination="header.left" after="logo"/>
+        <move element="top.search" destination="header.left" after="navigation.sections"/>
         <move element="minicart" destination="header.right" after="-"/>
     </body>
 

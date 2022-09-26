@@ -7,6 +7,11 @@ $viewModel = $block->getViewModel();
 
 ?>
 <div class="phone">
-    hi
-    <?= $block->escapeHtml($viewModel->getStorePhone()); ?>
+    <div class="phone-icon">
+        <img src="<?php echo $this->getViewFileUrl('ICreative_HeaderContact::images/shop4_header_phone.png'); ?>" alt="phone icon" width="30">
+    </div>
+    <div class="phone-info">
+        <h3>CALL US NOW</h3>
+        <p><?= $block->escapeHtml($viewModel->getStorePhone()); ?></p>
+    </div>
 </div>
