@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
-<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <!--Header-->
+        <!--Logo settings-->
         <referenceBlock name="logo">
             <arguments>
                 <argument name="logo_file" xsi:type="string">images/logo.png</argument>
@@ -10,25 +11,41 @@
                 <argument name="logo_alt" xsi:type="string">Proto</argument>
             </arguments>
         </referenceBlock>
+
+        <!--Header-->
         <referenceBlock name="header-wrapper">
+
             <referenceContainer name="compare-link-wrapper" remove="true"/>
-            <container name="header.left" htmlClass="header-left" htmlTag="div" before="header.right"/>
-            <container name="header.right" htmlClass="header-rigth" htmlTag="div">
+            <container name="header.left" htmlClass="header-left" htmlTag="div" before="header.right">
+                <!--Logo-->
+                <!--NavBar-->
+<!--                <referenceBlock name="catalog.topnav">-->
+<!--                    <block name="custom-header-link" template="Magento_Theme::topmenu_custom.phtml" before="-"/>-->
+<!--                </referenceBlock>-->
+                <container name="h_separator1" htmlTag="div" htmlClass="separator"/>
+                <!--TopSearch-->
+            </container>
+
+            <container name="header.right" htmlClass="header-right" htmlTag="div">
                 <container htmlClass="header-contact" name="header.contact" htmlTag="div">
-                    <block name="header_contact" class="ICreative\HeaderContact\Block\Phone" template="ICreative_HeaderContact::header_contacts.phtml">
+                    <block name="header_contact" class="ICreative\HeaderContact\Block\Phone"
+                           template="ICreative_HeaderContact::header_contacts.phtml">
                         <arguments>
-                            <argument name="view_model" xsi:type="object">ICreative\HeaderContact\ViewModel\Phone</argument>
+                            <argument name="view_model" xsi:type="object">ICreative\HeaderContact\ViewModel\Phone
+                            </argument>
                         </arguments>
                     </block>
                 </container>
+                <container name="h_separator2" htmlTag="div" htmlClass="separator"/>
+                <!--Minicart-->
             </container>
         </referenceBlock>
 
-        <!--Move to header-->
+        <!--Remove to header-->
         <move element="logo" destination="header.left" before="-"/>
         <move element="navigation.sections" destination="header.left" after="logo"/>
-        <move element="top.search" destination="header.left" after="navigation.sections"/>
-        <move element="minicart" destination="header.right" after="-"/>
+        <move element="top.search" destination="header.left" after="h_separator1"/>
+        <move element="minicart" destination="header.right" after="h_separator2"/>
     </body>
 
 </page>
