@@ -35,7 +35,15 @@
     padding: 0;
 }
 
-.header{
+.header.content:before {
+    content: none;
+}
+
+.header.content::after {
+    content:none;
+}
+
+.header {
     font-size: 12px;
     font-weight: 700;
     line-height: 20px;
@@ -58,14 +66,16 @@
         .nav-sections {
             margin-bottom: 0;
             margin-left: 0.875rem;
+
             .navigation {
                 background-color: #fff;
             }
 
-            .navigation  > ul {
-                .level-0{
+            .navigation > ul {
+                .level-0 {
                     padding: 10px 10px 8px 20px;
                 }
+
                 display: flex;
                 flex-flow: row wrap;
                 text-transform: uppercase;
@@ -82,4 +92,6 @@
         display: flex;
         flex-flow: row nowrap;
     }
+
+
 }

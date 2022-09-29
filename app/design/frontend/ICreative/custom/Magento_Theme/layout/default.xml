@@ -19,11 +19,12 @@
             <container name="header.left" htmlClass="header-left" htmlTag="div" before="header.right">
                 <!--Logo-->
                 <!--NavBar-->
-<!--                <referenceBlock name="catalog.topnav">-->
-<!--                    <block name="custom-header-link" template="Magento_Theme::topmenu_custom.phtml" before="-"/>-->
-<!--                </referenceBlock>-->
+                <referenceBlock name="catalog.topnav">
+                    <block name="custom-header-link" template="Magento_Theme::topmenu_custom.phtml" before="-"/>
+                </referenceBlock>
                 <container name="h_separator1" htmlTag="div" htmlClass="separator"/>
                 <!--TopSearch-->
+
             </container>
 
             <container name="header.right" htmlClass="header-right" htmlTag="div">
