@@ -334,6 +334,7 @@ return [
         'Dotdigitalgroup_Chat' => 1,
         'Dotdigitalgroup_Sms' => 1,
         'ICreative_HeaderContact' => 1,
+        'ICreative_Minicart' => 1,
         'ICreative_Navigation' => 1,
         'ICreative_Search' => 1,
         'Klarna_Core' => 1,
