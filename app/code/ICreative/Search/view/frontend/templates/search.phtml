@@ -4,13 +4,22 @@
  * See COPYING.txt for license details.
  */
 
+use ICreative\Search\ViewModel\Search;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Magento\Search\Helper\Data;
+use Magento\Search\ViewModel\ConfigProvider;
+
 // phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
 ?>
 <?php
-/** @var $block \Magento\Framework\View\Element\Template */
-/** @var $helper \Magento\Search\Helper\Data */
-/** @var $configProvider \Magento\Search\ViewModel\ConfigProvider */
-$helper = $this->helper(\Magento\Search\Helper\Data::class);
+/** @var $escaper Escaper */
+/** @var $block Template */
+/** @var $helper Data */
+/** @var $configProvider ConfigProvider */
+/** @var $viewModel Search */
+$viewModel = $block->getViewModel();
+$helper = $this->helper(Data::class);
 $configProvider = $block->getData('configProvider');
 ?>
 <div class="block block-search">
@@ -32,17 +41,18 @@ $configProvider = $block->getData('configProvider');
                         </label>
                         <div class="control">
                             <input id="search"
-                                <?php if ($configProvider->isSuggestionsAllowed()):?>
+                                <?php if ($configProvider->isSuggestionsAllowed()): ?>
                                     data-mage-init='{"quickSearch":{
                                     "formSelector":"#search_mini_form",
-                                    "url":"<?= $block->escapeUrl($helper->getSuggestUrl())?>",
+                                    "url":"<?= $block->escapeUrl($helper->getSuggestUrl()) ?>",
                                     "destinationSelector":"#search_autocomplete",
                                     "minSearchLength":"<?= $block->escapeHtml($helper->getMinQueryLength()) ?>"}
                                }'
-                                <?php endif;?>
+                                <?php endif; ?>
                                    type="text"
                                    name="<?= $block->escapeHtmlAttr($helper->getQueryParamName()) ?>"
-                                   value="<?= /* @noEscape */ $helper->getEscapedQueryText() ?>"
+                                   value="<?= /* @noEscape */
+                                   $helper->getEscapedQueryText() ?>"
                                    placeholder="<?= $block->escapeHtmlAttr(__('Search...')) ?>"
                                    class="input-text"
                                    maxlength="<?= $block->escapeHtmlAttr($helper->getMaxQueryLength()) ?>"
@@ -66,16 +76,37 @@ $configProvider = $block->getData('configProvider');
                     </div>
                 </form>
             </div>
-            <?= $ids = [1,2,3];
-            $categoryProduct=$block->getProductCollectionByCategories($ids);
-            foreach ($categoryProduct as $product){
-                echo $product->getName() . ' - ' . $product->getProductUrl() . '<br/>';
-            }
-            ?>
+            <div class="category-select">
+                <?php $categories = $viewModel->getAllCategories(); ?>
+                <label for="categories">Select category</label>
+                <select name="categories" id="categories">
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?= $block->escapeHtmlAttr($category->getId()) ?>">
+                            <?= $block->escapeHtml($category->getName()) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="search-results">
+                Search result <br/>
+                <?php
+                $ids = [6];
+                $categoryProducts = $viewModel->getProductCollectionByCategories($ids);
+                ?>
+                <?php foreach ($categoryProducts as $product): ?>
+                    <img src="<?= $viewModel->getProductImageUrl($product); ?>"
+                         alt="<?= $product->getName() ?>"/>
+                    <a href="<?= $product->getProductUrl() ?>">
+                        <?= $product->getName() ?>
+                    </a>
+                    <b><?= $product->getPrice() ?></b><br/>
+                <?php endforeach; ?>
+
+
+            </div>
         </div>
     </div>
-
-
 
 
 </div>

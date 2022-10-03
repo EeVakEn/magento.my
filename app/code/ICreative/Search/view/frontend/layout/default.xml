@@ -5,8 +5,13 @@
         <link src="ICreative_Search::js/search.js"/>
     </head>
     <body>
-        <referenceBlock name="top.search" class="ICreative\Search\Block\Index" template="ICreative_Search::search.phtml">
-
-        </referenceBlock>
+            <referenceBlock name="top.search"
+                   class="Magento\Framework\View\Element\Template"
+                   template="ICreative_Search::search.phtml"
+            >
+                <arguments>
+                    <argument name="view_model" xsi:type="object">ICreative\Search\ViewModel\Search</argument>
+                </arguments>
+            </referenceBlock>
     </body>
 </page>
