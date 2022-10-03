@@ -79,7 +79,8 @@ $configProvider = $block->getData('configProvider');
             <div class="category-select">
                 <?php $categories = $viewModel->getAllCategories(); ?>
                 <label for="categories">Select category</label>
-                <select name="categories" id="categories">
+                <select name="categories" id="categories-search-select">
+                    <option selected="selected" value="0">All categories</option>
                     <?php foreach ($categories as $category): ?>
                         <option value="<?= $block->escapeHtmlAttr($category->getId()) ?>">
                             <?= $block->escapeHtml($category->getName()) ?>
@@ -93,14 +94,24 @@ $configProvider = $block->getData('configProvider');
                 <?php
                 $ids = [6];
                 $categoryProducts = $viewModel->getProductCollectionByCategories($ids);
+                //                echo print_r($categoryProducts);
                 ?>
+
                 <?php foreach ($categoryProducts as $product): ?>
-                    <img src="<?= $viewModel->getProductImageUrl($product); ?>"
-                         alt="<?= $product->getName() ?>"/>
-                    <a href="<?= $product->getProductUrl() ?>">
-                        <?= $product->getName() ?>
-                    </a>
-                    <b><?= $product->getPrice() ?></b><br/>
+                    <div class="autocomplete-suggestion">
+                        <a class="search-product-link" href="<?= $product->getProductUrl() ?>">
+                            <div class="suggestion-left">
+                                <img src="<?= $viewModel->getProductImageUrl($product); ?>"
+                                     alt="<?= $product->getName() ?>"/>
+                            </div>
+                            <div class="suggestion-right">
+                                <div class="product-line product-name"><?= $product->getName() ?></div>
+                                <div class="product-line product-sku"><?= $product->getSku() ?></div>
+                                <div class="product-line product-price">Price: <?= $product->getPrice() ?></div>
+                            </div>
+                        </a>
+                    </div>
+
                 <?php endforeach; ?>
 
 
@@ -110,3 +121,6 @@ $configProvider = $block->getData('configProvider');
 
 
 </div>
+<script>
+
+</script>

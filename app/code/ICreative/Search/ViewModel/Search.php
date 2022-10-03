@@ -54,7 +54,7 @@ class Search implements ArgumentInterface
         $collection->addAttributeToSelect('*');
 //        $collection->addAttributeToFilter('sku', '111111');
         $collection->addCategoriesFilter(['in' => $ids]);
-        $collection->setPageSize(12);
+        $collection->setPageSize(1);
 //        $collection->addAttributeToFilter('name', array('like' => 'ABC%')); // содержит
         return $collection;
     }
@@ -63,5 +63,15 @@ class Search implements ArgumentInterface
     {
 //        return $this->_helperProduct->getThumbnailUrl($prod);
         return $this->_imageHelper->init($product, 'product_thumbnail_image')->getUrl();
+    }
+
+    public function getSearchResult($categoryId, $searchQry): ProductCollection{
+        $collection = $this->_productCollectionFactory->create();
+        $collection->addAttributeToSelect('id');
+        $collection->addAttributeToSelect('sku');
+        $collection->addAttributeToSelect('name');
+        $collection->addAttributeToSelect('price');
+        $collection->addAttributeToSelect('url');
+        return $collection;
     }
 }
