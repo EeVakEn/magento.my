@@ -1,0 +1,47 @@
+//contact-us block
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m){
+    .phone {
+        width: 100%;
+        margin: 0 !important;
+        text-align: left !important;
+        display: flex;
+        align-items: center;
+        flex-flow: row nowrap;
+
+        .phone-icon {
+            display: inline-block;
+            font-size: 30px;
+            width: 30px;
+            line-height: 1em;
+            margin-right: 15px;
+        }
+
+        .phone-info {
+            display: block;
+
+            h3 {
+                margin: 0 0 3px;
+                font-weight: 600;
+                font-size: 11px;
+                line-height: 11px;
+                color: #777;
+            }
+
+            p {
+
+                margin: 0;
+                font-weight: 700;
+                font-size: 18px;
+                line-height: 18px;
+                color: #222529;
+            }
+        }
+    }
+
+}
+
+& when (@media-common = true) {
+    .phone {
+        display: none;
+    }
+}

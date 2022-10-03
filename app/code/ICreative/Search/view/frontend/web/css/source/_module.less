@@ -1,89 +1,112 @@
 
-.search-area {
-    display: block;
-    width: auto;
-    position: relative;
-    margin-left: 0.875rem;
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .block-search {
+        width: auto !important;
+        margin-left: 0.875rem;
+        padding-left: 0!important;
+    }
+}
 
-    .search-link {
+& when (@media-common = true) {
+    .block-search{
+        margin-top: 0 !important;
+        width: 100%;
+        text-align: right;
+    }
+    .search-area {
+        display: inline-block;
+        margin-right: 0;
         position: relative;
-        font-size: 16px;
-        line-height: 40px;
-        width: 40px;
-        height: 40px;
-        text-decoration: none;
-        cursor: pointer;
-        color: @first-font-color;
+        color: #777;
+        margin-left: 0;
+        .search-link {
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            font-size: 16px;
+            line-height: 40px;
+            width: 40px;
+            height: 40px;
+            text-decoration: none;
+            cursor: pointer;
+            color: @first-font-color;
+        }
+
+        .search-link:hover {
+            text-decoration: none;
+            color: @first-font-color;
+        }
+
+        .search-link:after {
+            content: "";
+            position: absolute;
+            z-index: 7;
+            left: 50%;
+            top: 100%;
+            width: 0;
+            height: 0;
+            margin-left: -11px;
+            margin-top: -13px;
+            border: 11px solid transparent;
+            border-bottom-color: #ccc;
+            box-sizing: inherit;
+            display: var(--display, none);
+        }
+
     }
 
-    .search-link:hover {
-        text-decoration: none;
-        color: @first-font-color;
-    }
+    .search-box {
 
-    .search-link:after {
-        content: "";
         position: absolute;
-        z-index: 7;
-        left: 50%;
         top: 100%;
-        width: 0;
-        height: 0;
-        margin-left: -11px;
-        margin-top: -3px;
-        border: 11px solid transparent;
-        border-bottom-color: #ccc;
-        box-sizing: inherit;
-        display: var(--display, none);
-    }
-
-}
-
-.search-box {
-
-    position: absolute;
-    top: 100%;
-    right: -47px;
-    min-width: 340px;
-    margin-top: 8px;
-    width: 100%;
-    border: 5px solid #ccc;
-
-    display: none;
-    border-radius: 50px;
-
-    .block.block-content {
+        right: -47px;
+        min-width: 340px;
+        margin-top: 8px;
+        width: 100%;
+        border: 5px solid #ccc;
+        z-index: 7;
+        display: none;
         border-radius: 50px;
+
+        .block.block-content {
+            border-radius: 50px;
+        }
+
+        input {
+            left: 0;
+            border-radius: 0;
+            font-family: inherit;
+            border: none;
+            position: relative;
+            margin: 0;
+            height: 40px;
+            color: inherit;
+            background: none;
+            padding-left: 20px;
+        }
+
+        input:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
     }
 
-    input {
-        left: 0;
-        border-radius: 0;
-        font-family: inherit;
-        border: none;
-        position: relative;
-        margin: 0;
-        height: 40px;
+
+    .show {
+        display: block !important;
+    }
+
+    .block-search .action.search:before {
+        display: block !important;
+        font-size: 20px;
         color: inherit;
-        background: none;
-        padding-left: 20px;
+        content: '\e884' !important;
+        font-family: 'porto', serif !important;
+        font-weight: 600 !important;
     }
-    input:focus{
-        outline: none !important;
-        box-shadow: none !important;
+
+
+    .block-search {
+
     }
 }
-
-
-.show {
-    display: block !important;
-}
-.block-search .action.search:before {
-    display: block !important;
-    font-size: 20px;
-    color: inherit;
-    content: '\e884' !important;
-    font-family: 'porto', serif !important;
-    font-weight: 600 !important;
-}
-

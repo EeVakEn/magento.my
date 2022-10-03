@@ -12,8 +12,10 @@ atlassian*
 /sitemap.xml
 /pub/sitemap
 /pub/sitemap.xml
+/.idea
 /.gitattributes
 /app/config_sandbox
+/app/etc/config.php
 /app/etc/env.php
 /app/code/Magento/TestModule*
 /lib/internal/flex/uploader/.actionScriptProperties
@@ -24,15 +26,13 @@ atlassian*
 /lib/internal/flex/varien/.flexLibProperties
 /lib/internal/flex/varien/.project
 /lib/internal/flex/varien/.settings
+/node_modules
 /.grunt
 /Gruntfile.js
 /package.json
 /.php_cs
 /.php_cs.cache
 /grunt-config.json
-/dev
-/dev/tools/grunt/configs/local-themes.js
-
 /pub/media/*.*
 !/pub/media/.htaccess
 /pub/media/attribute/*
@@ -40,8 +40,6 @@ atlassian*
 /pub/media/analytics/*
 /pub/media/catalog/*
 !/pub/media/catalog/.htaccess
-/pub/media/contentmanager/*
-!/pub/media/contentmanager/.htaccess
 /pub/media/customer/*
 !/pub/media/customer/.htaccess
 /pub/media/downloadable/*
@@ -50,6 +48,8 @@ atlassian*
 /pub/media/import/*
 !/pub/media/import/.htaccess
 /pub/media/logo/*
+/pub/media/custom_options/*
+!/pub/media/custom_options/.htaccess
 /pub/media/theme/*
 /pub/media/theme_customization/*
 !/pub/media/theme_customization/.htaccess
@@ -58,10 +58,10 @@ atlassian*
 /pub/media/tmp/*
 !/pub/media/tmp/.htaccess
 /pub/media/captcha/*
+/pub/media/sitemap/*
+!/pub/media/sitemap/.htaccess
 /pub/static/*
 !/pub/static/.htaccess
-
-/pub/media/lfa
 
 /var/*
 !/var/.htaccess
@@ -103,3 +103,11 @@ pids
 # Editors
 **/.idea
 **/.#*
+
+/dev
+/dev/tools/grunt/configs/local-themes.js
+
+/pub/media/contentmanager/*
+!/pub/media/contentmanager/.htaccess
+/pub/media/lfa
+

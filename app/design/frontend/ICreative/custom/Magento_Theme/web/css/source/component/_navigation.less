@@ -1,0 +1,83 @@
+// styles-l - only for desktop
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m){
+    .nav-sections {
+        margin-left: 0.875rem;
+        flex-shrink: 1;
+        width: auto;
+        margin-bottom: 0;
+
+        .navigation {
+            flex-flow: row wrap;
+            text-transform: uppercase;
+
+            .level-0 {
+                margin: 0 1px 0 0;
+            }
+
+            > ul {
+                li {
+                    margin: 0 1px 0 0;
+                    .level-top {
+                        padding: 10px 10px 8px 20px;
+                        line-height: 20px;
+                        font-size: 12px;
+                        font-weight: 700;
+                        letter-spacing: -.3px;
+                    }
+                }
+            }
+
+            ul {
+                margin-top: 0;
+                margin-bottom: 0;
+                padding: 0;
+            }
+        }
+    }
+}
+
+
+// styles-m - common for desktop and mobile
+& when (@media-common = true) {
+    .nav-toggle{
+        display: block;
+        cursor: pointer;
+        text-decoration: none;
+        position: relative;
+        z-index: 1;
+        padding: 6.5px 10px 6.5px 1px;
+        text-align: center;
+        vertical-align: middle;
+        margin: 8px 0.25rem 8px 0;
+        line-height: 20px;
+        border-radius: 0.25rem;
+        left: 0;
+        top: 0;
+        speak: none;
+
+    }
+    .nav-toggle:before {
+        font-size: 20px;
+        content: '\e87b';
+        font-family: 'porto';
+        vertical-align: middle;
+        display: inline-block;
+        font-weight: normal;
+        text-align: center;
+    }
+    .nav-sections {
+        margin-bottom: 0;
+        background-color: white;
+
+        .navigation {
+            background-color: white;
+
+            .level-0.has-active > .level-top, .level0.active > .level-top {
+                border: none !important;
+                color: @active-font-color !important;
+            }
+        }
+    }
+}
+
+// styles-m

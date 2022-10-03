@@ -5,7 +5,7 @@
         <link src="ICreative_Search::js/search.js"/>
     </head>
     <body>
-        <referenceBlock name="top.search" template="ICreative_Search::search.phtml">
+        <referenceBlock name="top.search" class="ICreative\Search\Block\Index" template="ICreative_Search::search.phtml">
 
         </referenceBlock>
     </body>

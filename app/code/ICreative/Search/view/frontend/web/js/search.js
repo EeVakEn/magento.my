@@ -1,22 +1,28 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function (event) {
     const searchButton = document.querySelector('.search-link')
     const popupSearch = document.querySelector('.search-box')
+    const pageWrapper = document.querySelector('.page-wrapper')
     let isShow = false
 
-    searchButton.addEventListener('click',(e)=>{
+    searchButton.addEventListener('click', (e) => {
         e.preventDefault()
-        if (isShow === false){
+        if (isShow === false) {
             popupSearch.classList.add('show')
             searchButton.style.setProperty("--display", "inline-block")
-            isShow=true
-        }else{
+            isShow = true
+        } else {
             popupSearch.classList.remove('show')
             searchButton.style.setProperty("--display", "none")
-            isShow=false
+            isShow = false
+        }
+    })
+
+    document.addEventListener("mouseup", (e)=>{
+        if(e.target!==popupSearch && popupSearch.hasAttribute(e.target).length===0){
+            popupSearch.classList.remove('show')
+            searchButton.style.setProperty("--display", "none")
+            isShow = false
         }
     })
 });
-
-
-
 

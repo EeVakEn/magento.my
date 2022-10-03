@@ -22,22 +22,20 @@
                 <referenceBlock name="catalog.topnav">
                     <block name="custom-header-link" template="Magento_Theme::topmenu_custom.phtml" before="-"/>
                 </referenceBlock>
-                <container name="h_separator1" htmlTag="div" htmlClass="separator"/>
+                <block name="h_separator1" template="Magento_Theme::separator.phtml"/>
                 <!--TopSearch-->
-
             </container>
 
             <container name="header.right" htmlClass="header-right" htmlTag="div">
-                <container htmlClass="header-contact" name="header.contact" htmlTag="div">
-                    <block name="header_contact" class="ICreative\HeaderContact\Block\Phone"
-                           template="ICreative_HeaderContact::header_contacts.phtml">
-                        <arguments>
-                            <argument name="view_model" xsi:type="object">ICreative\HeaderContact\ViewModel\Phone
-                            </argument>
-                        </arguments>
-                    </block>
-                </container>
-                <container name="h_separator2" htmlTag="div" htmlClass="separator"/>
+                <block name="header_contact" class="ICreative\HeaderContact\Block\Phone"
+                       template="ICreative_HeaderContact::header_contacts.phtml">
+                    <arguments>
+                        <argument name="view_model" xsi:type="object">
+                            ICreative\HeaderContact\ViewModel\Phone
+                        </argument>
+                    </arguments>
+                </block>
+                <block name="h_separator2" template="Magento_Theme::separator.phtml"/>
                 <!--Minicart-->
             </container>
         </referenceBlock>

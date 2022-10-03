@@ -66,6 +66,12 @@ $configProvider = $block->getData('configProvider');
                     </div>
                 </form>
             </div>
+            <?= $ids = [1,2,3];
+            $categoryProduct=$block->getProductCollectionByCategories($ids);
+            foreach ($categoryProduct as $product){
+                echo $product->getName() . ' - ' . $product->getProductUrl() . '<br/>';
+            }
+            ?>
         </div>
     </div>
 
