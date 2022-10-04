@@ -111,16 +111,25 @@ $configProvider = $block->getData('configProvider');
                             </div>
                         </a>
                     </div>
-
                 <?php endforeach; ?>
-
-
             </div>
         </div>
     </div>
-
-
 </div>
 <script>
-
+    require([
+        'jquery',
+        'domReady!'
+    ], function ($) {
+        let input=''
+        let select=0
+        $("#categories-search-select").on('change', function() {
+            select = this.value;
+            console.log({input, select});
+        });
+        $("#search").on('input', function() {
+            input = this.value;
+            console.log({input, select});
+        });
+    });
 </script>
