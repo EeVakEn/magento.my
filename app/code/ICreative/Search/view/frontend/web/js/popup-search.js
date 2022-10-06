@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     const searchButton = document.querySelector('.search-link')
     const popupSearch = document.querySelector('.search-box')
-    const pageWrapper = document.querySelector('.page-wrapper')
     let isShow = false
 
     searchButton.addEventListener('click', (e) => {
