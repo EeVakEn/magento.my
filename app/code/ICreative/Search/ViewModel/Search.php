@@ -52,10 +52,8 @@ class Search implements ArgumentInterface
     {
         $collection = $this->_productCollectionFactory->create();
         $collection->addAttributeToSelect('*');
-//        $collection->addAttributeToFilter('sku', '111111');
         $collection->addCategoriesFilter(['in' => $ids]);
         $collection->setPageSize(1);
-//        $collection->addAttributeToFilter('name', array('like' => 'ABC%')); // содержит
         return $collection;
     }
 
