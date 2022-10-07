@@ -30,7 +30,7 @@ $configProvider = $block->getData('configProvider');
 				<i class="icon-magnifier"></i>
 			</span>
         </a>
-        <div class="search-box">
+        <div class="search-box" data-mage-init='{"search": {}}'>
             <div class="block block-title"><strong><?= $block->escapeHtml(__('Search')) ?></strong></div>
             <div class="block block-content">
                 <form class="form minisearch" id="search_mini_form"
@@ -40,7 +40,7 @@ $configProvider = $block->getData('configProvider');
                             <span><?= $block->escapeHtml(__('Search')) ?></span>
                         </label>
                         <div class="control">
-                            <input id="search"
+                            <input id="search" data-bind="textInput: query"
                                 <?php if ($configProvider->isSuggestionsAllowed()): ?>
                                     data-mage-init='{"quickSearch":{
                                     "formSelector":"#search_mini_form",
@@ -61,10 +61,21 @@ $configProvider = $block->getData('configProvider');
                                    aria-autocomplete="both"
                                    autocomplete="off"
                                    aria-expanded="false"/>
-                            <div id="search_autocomplete" class="search-autocomplete"></div>
-                            <?= $block->getChildHtml() ?>
+                            <div class="category-select">
+                                <?php $categories = $viewModel->getActiveTopCategories(); ?>
+                                <label for="categories">Select category</label>
+                                <select name="categories" id="categories-search-select" data-bind="value: cat_id">
+                                    <option selected="selected" value="0">All categories</option>
+                                    <?php foreach ($categories as $category): ?>
+                                        <option value="<?= $block->escapeHtmlAttr($category->getId()) ?>">
+                                            <?= $block->escapeHtml($category->getName()) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
+
                     <div class="actions">
                         <button type="submit"
                                 title="<?= $block->escapeHtml(__('Search')) ?>"
@@ -76,60 +87,33 @@ $configProvider = $block->getData('configProvider');
                     </div>
                 </form>
             </div>
-            <div class="category-select">
-                <?php $categories = $viewModel->getAllCategories(); ?>
-                <label for="categories">Select category</label>
-                <select name="categories" id="categories-search-select">
-                    <option selected="selected" value="0">All categories</option>
-                    <?php foreach ($categories as $category): ?>
-                        <option value="<?= $block->escapeHtmlAttr($category->getId()) ?>">
-                            <?= $block->escapeHtml($category->getName()) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+
 
             <div class="search-results">
-                Search result <br/>
-                <?php
-                $ids = [6];
-                $categoryProducts = $viewModel->getProductCollectionByCategories($ids);
-                //                echo print_r($categoryProducts);
-                ?>
-
-                <?php foreach ($categoryProducts as $product): ?>
-                    <div class="autocomplete-suggestion">
-                        <a class="search-product-link" href="<?= $product->getProductUrl() ?>">
-                            <div class="suggestion-left">
-                                <img src="<?= $viewModel->getProductImageUrl($product); ?>"
-                                     alt="<?= $product->getName() ?>"/>
-                            </div>
-                            <div class="suggestion-right">
-                                <div class="product-line product-name"><?= $product->getName() ?></div>
-                                <div class="product-line product-sku"><?= $product->getSku() ?></div>
-                                <div class="product-line product-price">Price: <?= $product->getPrice() ?></div>
-                            </div>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
+                <p data-bind="text: query" style="background-color: red;">dsd</p>
+                <p data-bind="text: cat_id" style="background-color: red;">sdsd</p>
+<!--                Search result <br/>-->
+<!--                --><?php
+//                $ids = [6];
+//                $categoryProducts = $viewModel->getProductCollectionByCategories($ids);
+//                ?>
+<!---->
+<!--                --><?php //foreach ($categoryProducts as $product): ?>
+<!--                    <div class="autocomplete-suggestion">-->
+<!--                        <a class="search-product-link" href="--><?//= $product->getProductUrl() ?><!--">-->
+<!--                            <div class="suggestion-left">-->
+<!--                                <img src="--><?//= $viewModel->getProductImageUrl($product); ?><!--"-->
+<!--                                     alt="--><?//= $product->getName() ?><!--"/>-->
+<!--                            </div>-->
+<!--                            <div class="suggestion-right">-->
+<!--                                <div class="product-line product-name">--><?//= $product->getName() ?><!--</div>-->
+<!--                                <div class="product-line product-sku">--><?//= $product->getSku() ?><!--</div>-->
+<!--                                <div class="product-line product-price">Price: --><?//= $product->getPrice() ?><!--</div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                --><?php //endforeach; ?>
             </div>
         </div>
     </div>
 </div>
-<script>
-    require([
-        'jquery',
-        'domReady!'
-    ], function ($) {
-        let input=''
-        let select=0
-        $("#categories-search-select").on('change', function() {
-            select = this.value;
-            console.log({input, select});
-        });
-        $("#search").on('input', function() {
-            input = this.value;
-            console.log({input, select});
-        });
-    });
-</script>

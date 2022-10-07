@@ -5,20 +5,24 @@ namespace ICreative\Search\Helper;
 
 class ProductHelper
 {
-    private \Magento\Catalog\Helper\Product $helperProduct;
+    private \Magento\Catalog\Helper\Product $productHelper;
+    private \Magento\Catalog\Helper\Image $imageHelper;
     private \Magento\Framework\Pricing\Helper\Data $priceHelper;
     private \Magento\Catalog\Model\CategoryRepository $categoryRepository;
 
     public function __construct(
-        \Magento\Catalog\Helper\Product           $helperProduct,
+        \Magento\Catalog\Helper\Product           $productHelper,
+        \Magento\Catalog\Helper\Image             $imageHelper,
         \Magento\Framework\Pricing\Helper\Data    $priceHelper,
         \Magento\Catalog\Model\CategoryRepository $categoryRepository
     )
     {
+        $this->productHelper = $productHelper;
         $this->priceHelper = $priceHelper;
-        $this->helperProduct = $helperProduct;
+        $this->imageHelper = $imageHelper;
         $this->categoryRepository = $categoryRepository;
     }
+
     // TODO (eevaken): Not working(return 0)
     public function formatPrice($price)
     {
@@ -27,7 +31,7 @@ class ProductHelper
 
     public function getProductImageUrl($product): string
     {
-        return $this->helperProduct->getThumbnailUrl($product);
+        return $this->productHelper->getThumbnailUrl($product);
     }
 
     public function getChildCategories($cat_id)

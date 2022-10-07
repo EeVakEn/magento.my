@@ -37,13 +37,12 @@ class ProductRepository implements ProductRepositoryInterface
         // get product collection entity
         $products = $this->productCollectionFactory->create();
         try {
-            // TODO (eevaken): Set attr
-            $products->addAttributeToSelect('*');
+            $products->addAttributeToSelect(['id', 'sku', 'name', 'price', 'description', 'thumbnail']);
             if ($cat_id !== 0)
                 $products->addCategoriesFilter(['in' => $this->helper->getChildCategories($cat_id)]);
 
             $products->addAttributeToFilter('name', array('like' => '%' . $query . '%'))
-                ->setPageSize(100);
+                ->setPageSize(5);
         } catch (NoSuchEntityException $e) {
             throw NoSuchEntityException::singleField('query', $query);
         }
@@ -56,8 +55,8 @@ class ProductRepository implements ProductRepositoryInterface
                 ->setId($product->getId())
                 ->setSku($product->getSku())
                 ->setName($product->getName())
-                ->setDescription($product->getDescription() ? $product->getDescription() : '')
-                ->setPrice($this->helper->formatPrice($product->getPrice()))
+                ->setDescription($product->getDescription())
+                ->setPrice($product->getPrice())
                 ->setProductUrl($product->getProductUrl())
                 ->setImageUrl($this->helper->getProductImageUrl($product))
                 ->setCategoriesForSearch($this->helper->getChildCategories($cat_id));

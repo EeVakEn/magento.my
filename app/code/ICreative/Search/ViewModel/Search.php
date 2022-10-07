@@ -37,12 +37,12 @@ class Search implements ArgumentInterface
     /**
      * @throws LocalizedException
      */
-    public function getAllCategories(): CategoryCollection
+    public function getActiveTopCategories(): CategoryCollection
     {
         $collection = $this->_categoriesCollectionFactory->create();
-        $collection->addAttributeToSelect('name');
-        $collection->addAttributeToSelect('id');
+        $collection->addAttributeToSelect(['id','name','level','is_active']);
         $collection->addAttributeToFilter('level', 2);
+        $collection->addAttributeToFilter('is_active', true);
 
         return $collection;
     }
