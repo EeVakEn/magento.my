@@ -15,18 +15,22 @@ use Magento\Catalog\Helper\Product;
 
 class Search implements ArgumentInterface
 {
+    private \Magento\Directory\Model\Currency $currency;
     private CategoryCollectionFactory $_categoriesCollectionFactory;
     private ProductCollectionFactory $_productCollectionFactory;
     private ProductFactory $_productFactory;
     private Image $_imageHelper;
 
-    public function __construct(Image                     $imageHelper,
-                                CategoryCollectionFactory $categoriesCollectionFactory,
-                                ProductCollectionFactory  $productCollectionFactory,
-                                ProductFactory            $productFactory
+    public function __construct(
+        \Magento\Directory\Model\Currency $currency,
+        Image                     $imageHelper,
+        CategoryCollectionFactory $categoriesCollectionFactory,
+        ProductCollectionFactory  $productCollectionFactory,
+        ProductFactory            $productFactory
 
     )
     {
+        $this->currency = $currency;
         $this->_imageHelper = $imageHelper;
         $this->_categoriesCollectionFactory = $categoriesCollectionFactory;
         $this->_productCollectionFactory = $productCollectionFactory;
@@ -40,36 +44,11 @@ class Search implements ArgumentInterface
     public function getActiveTopCategories(): CategoryCollection
     {
         $collection = $this->_categoriesCollectionFactory->create();
-        $collection->addAttributeToSelect(['id','name','level','is_active']);
+        $collection->addAttributeToSelect(['id', 'name', 'level', 'is_active']);
         $collection->addAttributeToFilter('level', 2);
         $collection->addAttributeToFilter('is_active', true);
 
         return $collection;
     }
 
-
-    public function getProductCollectionByCategories($ids): ProductCollection
-    {
-        $collection = $this->_productCollectionFactory->create();
-        $collection->addAttributeToSelect('*');
-        $collection->addCategoriesFilter(['in' => $ids]);
-        $collection->setPageSize(1);
-        return $collection;
-    }
-
-    public function getProductImageUrl($product): string
-    {
-//        return $this->_helperProduct->getThumbnailUrl($prod);
-        return $this->_imageHelper->init($product, 'product_thumbnail_image')->getUrl();
-    }
-
-    public function getSearchResult($categoryId, $searchQry): ProductCollection{
-        $collection = $this->_productCollectionFactory->create();
-        $collection->addAttributeToSelect('id');
-        $collection->addAttributeToSelect('sku');
-        $collection->addAttributeToSelect('name');
-        $collection->addAttributeToSelect('price');
-        $collection->addAttributeToSelect('url');
-        return $collection;
-    }
 }

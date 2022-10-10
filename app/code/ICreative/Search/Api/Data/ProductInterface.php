@@ -3,6 +3,7 @@
 namespace ICreative\Search\Api\Data;
 
 
+
 /**
  * @api
  * @since 100.0.2
@@ -59,14 +60,14 @@ interface ProductInterface
     /**
      * Product price
      *
-     * @return float|null
+     * @return string
      */
     public function getPrice();
 
     /**
      * Set product name
      *
-     * @param float $price
+     * @param string $price
      * @return $this
      */
     public function setPrice($price);

@@ -12,16 +12,22 @@ class ProductRepository implements ProductRepositoryInterface
 {
 
     private \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory;
+    private \Magento\Catalog\Model\Product\Attribute\Source\Status $productStatus;
+    private \Magento\Catalog\Model\Product\Visibility $productVisibility;
     private ProductInterfaceFactory $productInterfaceFactory;
     private ProductHelper $helper;
 
     public function __construct(
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
+        \Magento\Catalog\Model\Product\Attribute\Source\Status         $productStatus,
+        \Magento\Catalog\Model\Product\Visibility                      $productVisibility,
         ProductInterfaceFactory                                        $productInterfaceFactory,
         ProductHelper                                                  $helper
     )
     {
         $this->productCollectionFactory = $productCollectionFactory;
+        $this->productStatus = $productStatus;
+        $this->productVisibility = $productVisibility;
         $this->productInterfaceFactory = $productInterfaceFactory;
         $this->helper = $helper;
     }
@@ -37,12 +43,16 @@ class ProductRepository implements ProductRepositoryInterface
         // get product collection entity
         $products = $this->productCollectionFactory->create();
         try {
-            $products->addAttributeToSelect(['id', 'sku', 'name', 'price', 'description', 'thumbnail', 'status']);
+            $products->addAttributeToSelect(['id', 'sku', 'name', 'price', 'description', 'thumbnail', 'status', 'visibility']);
             if ($cat_id !== 0)
                 $products->addCategoriesFilter(['in' => $this->helper->getChildCategories($cat_id)]);
 
-            $products->addAttributeToFilter('name', array('like' => '%' . $query . '%'))
-                ->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED)
+            $products->addAttributeToFilter(array(
+                array('attribute' => 'name', 'like' => '%' . $query . '%'),
+                array('attribute' => 'sku', 'like' => '%' . $query . '%')
+            ))
+                ->addAttributeToFilter('status', ['in' => $this->productStatus->getVisibleStatusIds()])
+                ->setVisibility($this->productVisibility->getVisibleInSearchIds())
                 ->setPageSize(5);
         } catch (NoSuchEntityException $e) {
             throw NoSuchEntityException::singleField('query', $query);
@@ -57,7 +67,7 @@ class ProductRepository implements ProductRepositoryInterface
                 ->setSku($product->getSku())
                 ->setName($product->getName())
                 ->setDescription($product->getDescription())
-                ->setPrice($product->getPrice())
+                ->setPrice($this->helper->formatPrice($product))
                 ->setProductUrl($product->getProductUrl())
                 ->setImageUrl($this->helper->getProductImageUrl($product));
 //                ->setCategoriesForSearch($this->helper->getChildCategories($cat_id));
