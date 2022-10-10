@@ -1,7 +1,8 @@
 var config = {
     map: {
-        '*':{
-            search: 'ICreative_Search/js/search',
+        '*': {
+            "search" : "ICreative_Search/js/search",
         }
-    }
+    },
+
 }

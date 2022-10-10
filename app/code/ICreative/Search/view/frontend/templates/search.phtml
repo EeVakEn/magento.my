@@ -22,6 +22,7 @@ $viewModel = $block->getViewModel();
 $helper = $this->helper(Data::class);
 $configProvider = $block->getData('configProvider');
 ?>
+
 <div class="block block-search">
 
     <div class="search-area">
@@ -30,7 +31,7 @@ $configProvider = $block->getData('configProvider');
 				<i class="icon-magnifier"></i>
 			</span>
         </a>
-        <div class="search-box" data-mage-init='{"search": {}}'>
+        <div class="search-box"> <!-- search js scope-->
             <div class="block block-title"><strong><?= $block->escapeHtml(__('Search')) ?></strong></div>
             <div class="block block-content">
                 <form class="form minisearch" id="search_mini_form"
@@ -60,10 +61,10 @@ $configProvider = $block->getData('configProvider');
                                    aria-haspopup="false"
                                    aria-autocomplete="both"
                                    autocomplete="off"
-                                   aria-expanded="false"/>
+                                   aria-expanded="true"/>
                             <div class="category-select">
                                 <?php $categories = $viewModel->getActiveTopCategories(); ?>
-                                <label for="categories">Select category</label>
+                                <label for="categories-search-select">Select category</label>
                                 <select name="categories" id="categories-search-select" data-bind="value: cat_id">
                                     <option selected="selected" value="0">All categories</option>
                                     <?php foreach ($categories as $category): ?>
@@ -87,33 +88,27 @@ $configProvider = $block->getData('configProvider');
                     </div>
                 </form>
             </div>
-
-
             <div class="search-results">
-                <p data-bind="text: query" style="background-color: red;">dsd</p>
-                <p data-bind="text: cat_id" style="background-color: red;">sdsd</p>
-<!--                Search result <br/>-->
-<!--                --><?php
-//                $ids = [6];
-//                $categoryProducts = $viewModel->getProductCollectionByCategories($ids);
-//                ?>
-<!---->
-<!--                --><?php //foreach ($categoryProducts as $product): ?>
-<!--                    <div class="autocomplete-suggestion">-->
-<!--                        <a class="search-product-link" href="--><?//= $product->getProductUrl() ?><!--">-->
-<!--                            <div class="suggestion-left">-->
-<!--                                <img src="--><?//= $viewModel->getProductImageUrl($product); ?><!--"-->
-<!--                                     alt="--><?//= $product->getName() ?><!--"/>-->
-<!--                            </div>-->
-<!--                            <div class="suggestion-right">-->
-<!--                                <div class="product-line product-name">--><?//= $product->getName() ?><!--</div>-->
-<!--                                <div class="product-line product-sku">--><?//= $product->getSku() ?><!--</div>-->
-<!--                                <div class="product-line product-price">Price: --><?//= $product->getPrice() ?><!--</div>-->
-<!--                            </div>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                --><?php //endforeach; ?>
+                <div data-bind="foreach: products">
+                    <div class="autocomplete-suggestion">
+                        <a class="search-product-link" data-bind="attr: { href: product_url}">
+                            <div class="suggestion-left">
+                                <img src="" alt="" data-bind="attr: { src: image_url, alt: name}"/>
+                            </div>
+                            <div class="suggestion-right">
+                                <div class="product-line product-name" data-bind="text: name">
+                                </div>
+                                <div class="product-line product-sku" data-bind="text: sku">
+                                </div>
+                                <div class="product-line product-price">Price:
+                                    <span data-bind="text: price"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </div>

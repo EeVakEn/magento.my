@@ -3,6 +3,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <link src="ICreative_Search::js/popup-search.js"/>
+        <link src="ICreative_Search::js/search.js"/>
     </head>
     <body>
             <referenceBlock name="top.search"

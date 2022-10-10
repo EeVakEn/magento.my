@@ -117,19 +117,19 @@ class Product extends \Magento\Framework\DataObject implements \ICreative\Search
         return $this->setData('image_url', $image_url);
     }
 
-    /**
-     * @inerhitDoc
-     */
-    public function getCategoriesForSearch()
-    {
-        return $this->getData('search_categories');
-    }
-
-    /**
-     * @inerhitDoc
-     */
-    public function setCategoriesForSearch($catArray)
-    {
-        return $this->setData('search_categories', $catArray);
-    }
+//    /**
+//     * @inerhitDoc
+//     */
+//    public function getCategoriesForSearch()
+//    {
+//        return $this->getData('search_categories');
+//    }
+//
+//    /**
+//     * @inerhitDoc
+//     */
+//    public function setCategoriesForSearch($catArray)
+//    {
+//        return $this->setData('search_categories', $catArray);
+//    }
 }

@@ -32,16 +32,17 @@ class ProductRepository implements ProductRepositoryInterface
      * @param int $cat_id
      * @return ICreative\Search\Api\Data\ProductInterface[]
      */
-    public function getList(string $query, int $cat_id)
+    public function getList(string $query, int $cat_id = 0)
     {
         // get product collection entity
         $products = $this->productCollectionFactory->create();
         try {
-            $products->addAttributeToSelect(['id', 'sku', 'name', 'price', 'description', 'thumbnail']);
+            $products->addAttributeToSelect(['id', 'sku', 'name', 'price', 'description', 'thumbnail', 'status']);
             if ($cat_id !== 0)
                 $products->addCategoriesFilter(['in' => $this->helper->getChildCategories($cat_id)]);
 
             $products->addAttributeToFilter('name', array('like' => '%' . $query . '%'))
+                ->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED)
                 ->setPageSize(5);
         } catch (NoSuchEntityException $e) {
             throw NoSuchEntityException::singleField('query', $query);
@@ -58,8 +59,8 @@ class ProductRepository implements ProductRepositoryInterface
                 ->setDescription($product->getDescription())
                 ->setPrice($product->getPrice())
                 ->setProductUrl($product->getProductUrl())
-                ->setImageUrl($this->helper->getProductImageUrl($product))
-                ->setCategoriesForSearch($this->helper->getChildCategories($cat_id));
+                ->setImageUrl($this->helper->getProductImageUrl($product));
+//                ->setCategoriesForSearch($this->helper->getChildCategories($cat_id));
             $result[] = $productInterface;
         }
 

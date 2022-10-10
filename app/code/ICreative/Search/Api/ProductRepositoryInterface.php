@@ -10,5 +10,5 @@ interface ProductRepositoryInterface
      * @return ICreative\Search\Api\Data\ProductInterface[]
      * @api
      */
-    public function getList(string $query, int $cat_id);
+    public function getList(string $query, int $cat_id=0);
 }

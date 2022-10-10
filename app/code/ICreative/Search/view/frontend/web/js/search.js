@@ -1,36 +1,28 @@
+require(['jquery', 'ko'],
+    function ($, ko) {
+        query = ko.observable('')
+        cat_id = ko.observable(0)
+        products = ko.observableArray([]);
 
-require([
-    'jquery',
-    'ko',
-    'domReady!'
-], function ($) {
+        query.subscribe(function () {
+            getProducts(query(), cat_id())
+        })
 
+        cat_id.subscribe(function () {
+            getProducts(query(), cat_id())
+        })
 
-    const productApiURL = '/rest/V2/search/'
-
-
-
-    const searchViewModel = {
-        query: ko.observable(''),
-        cat_id: ko.observable(0)
-    }
-
-    ko.applyBindings(searchViewModel)
-
-    searchViewModel.query.subscribe(function (newValue){
-        console.log(newValue)
-    })
-
-
-    const getProducts = (cat_id, query) =>{
-        $.ajax({
-            url: productApiURL + cat_id + '/' + query,         /* Куда отправить запрос */
-            method: 'get',             /* Метод запроса (post или get) */
-            dataType: 'json',          /* Тип данных в ответе (xml, json, script, html). */
-            data: {text: 'Текст'},     /* Данные передаваемые в массиве */
-            success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
-                alert(data); /* В переменной data содержится ответ от index.php. */
+        const getProducts = function (query, cat_id) {
+            products([])
+            if (query.length > 2) {
+                $.ajax({
+                    url: '/rest/V2/search/' + query + '/' + cat_id,         /* URL запросa */
+                    method: 'get',                                          /* Метод запроса */
+                    dataType: 'json',                                       /* Тип данных в ответе */
+                    success: function (data) {
+                        products(data)
+                    }
+                })
             }
-        });
-    }
-});
+        }
+    });

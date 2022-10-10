@@ -115,18 +115,18 @@ interface ProductInterface
      */
     public function setImageUrl($image_url);
 
-    /**
-     * Get categories for search
-     *
-     * @return array
-     */
-    public function getCategoriesForSearch();
-
-    /**
-     * Set categories for search
-     * @param array $catArray
-     * @return $this
-     */
-    public function setCategoriesForSearch($catArray);
+//    /**
+//     * Get categories for search
+//     *
+//     * @return array
+//     */
+//    public function getCategoriesForSearch();
+//
+//    /**
+//     * Set categories for search
+//     * @param array $catArray
+//     * @return $this
+//     */
+//    public function setCategoriesForSearch($catArray);
 
 }
