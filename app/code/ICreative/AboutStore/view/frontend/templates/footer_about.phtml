@@ -1,0 +1,26 @@
+<?php
+/**
+ * @var $block ICreative\AboutStore\Block\About
+ * @var $viewModel ICreative\AboutStore\ViewModel\About
+ */
+$viewModel = $block->getViewModel();
+?>
+<div>
+    <div>
+        <h3>ABOUT US</h3>
+<!--        <a href="/">-->
+<!--            <img class="image" src="--><?//= $block->escapeHtmlAttr($viewModel->getLogoSrc()) ?><!--" alt="--><?//= $block->escapeHtmlAttr($viewModel->getLogoAlt()) ?><!--" width="202"-->
+<!--                 height="80"/>-->
+<!--        </a>-->
+    </div>
+    <div>
+        <div>
+            <p>
+                <?= $block->escapeHtml($viewModel->getAbout()) ?>
+            </p>
+        </div>
+    </div>
+    <div>
+        Social Links
+    </div>
+</div>

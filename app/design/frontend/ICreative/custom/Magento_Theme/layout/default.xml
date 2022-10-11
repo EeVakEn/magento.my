@@ -122,11 +122,9 @@
         </referenceBlock>
 
         <!-- Header structure -->
-        <referenceContainer name="footer-container">
-            <referenceBlock name="footer-about-us">
+<!--        <referenceContainer name="footer-container">-->
 
-            </referenceBlock>
-        </referenceContainer>
+<!--        </referenceContainer>-->
 
     </body>
 

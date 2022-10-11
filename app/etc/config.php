@@ -333,6 +333,7 @@ return [
         'Dotdigitalgroup_Email' => 1,
         'Dotdigitalgroup_Chat' => 1,
         'Dotdigitalgroup_Sms' => 1,
+        'ICreative_AboutStore' => 1,
         'ICreative_HeaderContact' => 1,
         'ICreative_Minicart' => 1,
         'ICreative_Search' => 1,
