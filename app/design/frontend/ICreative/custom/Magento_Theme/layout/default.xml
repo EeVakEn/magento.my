@@ -12,7 +12,8 @@
             </arguments>
         </referenceBlock>
 
-        <!--Header-->
+        <!--=============================================HEADER===================================================-->
+
         <referenceBlock name="header-wrapper">
 
             <referenceContainer name="compare-link-wrapper" remove="true"/>
@@ -45,6 +46,88 @@
         <move element="navigation.sections" destination="header.left" after="logo"/>
         <move element="top.search" destination="header.left" after="h_separator1"/>
         <move element="minicart" destination="header.right" after="h_separator2"/>
+
+
+        <!--=============================================FOOTER===================================================-->
+
+        <!--Footer Links-->
+
+        <!-- Remove old links -->
+        <referenceBlock name="contact-us-link" remove="true"/>
+        <referenceBlock name="sales-guest-form-link" remove="true"/>
+        <referenceBlock name="search-term-popular-link" remove="true"/>
+
+        <!-- Move old links -->
+        <move element="catalog-search-advanced-link" destination="footer_links" after="order-history-link"/>
+        <move element="privacy-policy-link" destination="footer_links" after="-"/>
+
+        <!-- Edit link label-->
+        <referenceBlock name="privacy-policy-link">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Privacy</argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Create new links -->
+        <referenceBlock name="footer_links" class="Magento\Framework\View\Element\Html\Links"
+                        template="Magento_Theme::footer_links.phtml">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="help-faq-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Help &amp; FAQs</argument>
+                    <argument name="path" xsi:type="string">no-route</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="order-tracking-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Order Tracking</argument>
+                    <argument name="path" xsi:type="string">no-route</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="delivery-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Shipping &amp; Delivery</argument>
+                    <argument name="path" xsi:type="string">no-route</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="order-history-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Orders History</argument>
+                    <argument name="path" xsi:type="string">no-route</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="account-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">My Account</argument>
+                    <argument name="path" xsi:type="string">my-account</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="careers-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Careers</argument>
+                    <argument name="path" xsi:type="string">no-route</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="about-us-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">About Us</argument>
+                    <argument name="path" xsi:type="string">about-us</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="corporate-sales-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Corporate Sales</argument>
+                    <argument name="path" xsi:type="string">no-route</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <!-- Header structure -->
+        <referenceContainer name="footer-container">
+            <referenceBlock name="footer-about-us">
+
+            </referenceBlock>
+        </referenceContainer>
+
     </body>
 
 </page>

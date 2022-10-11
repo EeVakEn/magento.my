@@ -1,0 +1,18 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\Html\Links $block
+ */
+?>
+<div class="footer-links-widget">
+    <div class="footer-links-widget-text">
+        <h3>CUSTOMER SERVICE</h3>
+        <div class="footer_links">
+            <ul>
+                <?php foreach ($block->getLinks() as $link): ?>
+                    <li><a href="<?= $link->getHref() ?>"><?= $link->getLabel() ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+</div>
+
