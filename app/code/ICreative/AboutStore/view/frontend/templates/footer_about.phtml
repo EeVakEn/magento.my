@@ -2,25 +2,35 @@
 /**
  * @var $block ICreative\AboutStore\Block\About
  * @var $viewModel ICreative\AboutStore\ViewModel\About
+ * @var $escaper \Magento\Framework\Escaper
  */
 $viewModel = $block->getViewModel();
 ?>
-<div>
-    <div>
-        <h3>ABOUT US</h3>
-<!--        <a href="/">-->
-<!--            <img class="image" src="--><?//= $block->escapeHtmlAttr($viewModel->getLogoSrc()) ?><!--" alt="--><?//= $block->escapeHtmlAttr($viewModel->getLogoAlt()) ?><!--" width="202"-->
-<!--                 height="80"/>-->
-<!--        </a>-->
+<div class="col-lg-6">
+    <div class="footer-logo">
+        <h3 class="footer-section-title">ABOUT US</h3>
+        <a href="/">
+            <img class="image" src="<?= $escaper->escapeHtmlAttr($viewModel->getLogoSrc()) ?>" alt="<?= $escaper->escapeHtmlAttr($viewModel->getLogoAlt()) ?>" width="111"/>
+        </a>
     </div>
-    <div>
+    <div class="footer-about">
         <div>
             <p>
-                <?= $block->escapeHtml($viewModel->getAbout()) ?>
+                <?= $escaper->escapeHtml($viewModel->getAbout()) ?>
             </p>
         </div>
     </div>
-    <div>
-        Social Links
+    <div class="footer-follow-us">
+        <div class="share-links" style="font-family: 'Font Awesome 5 Brands'">
+            <?php if ($viewModel->getFacebook()): ?>
+                <a class="fa-facebook" target="_blank" href="<?= $escaper->escapeHtmlAttr($viewModel->getFacebook()) ?>"></a>
+            <?php endif; ?>
+            <?php if ($viewModel->getTwitter()): ?>
+                <a class="fa-twitter" target="_blank" href="<?= $escaper->escapeHtmlAttr($viewModel->getTwitter()) ?>"></a>
+            <?php endif; ?>
+            <?php if ($viewModel->getLinkedIn()): ?>
+                <a class="fa-linkedIn" target="_blank" href="<?= $escaper->escapeHtmlAttr($viewModel->getLinkedIn()) ?>"></a>
+            <?php endif; ?>
+        </div>
     </div>
 </div>

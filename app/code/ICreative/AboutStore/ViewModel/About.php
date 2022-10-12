@@ -3,6 +3,7 @@
 namespace ICreative\AboutStore\ViewModel;
 
 use Magento\Framework\View\Element\Block\ArgumentInterface;
+use Magento\Store\Model\ScopeInterface;
 
 class About implements ArgumentInterface
 {
@@ -21,7 +22,7 @@ class About implements ArgumentInterface
     /**
      * Get logo image URL
      *
-     * @return string
+     * @return stringcall to a member function getabout() on null in magento
      */
     public function getLogoSrc()
     {
@@ -38,11 +39,28 @@ class About implements ArgumentInterface
         return $this->logo->getLogoAlt();
     }
 
-
-
     public function getAbout(){
         return $this->scopeConfig->getValue(
             'general/store_information/about',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    public function getLinkedIn(){
+        return $this->scopeConfig->getValue(
+            'general/store_information/linkedin',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+    public function getFacebook(){
+        return $this->scopeConfig->getValue(
+            'general/store_information/facebook',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+    public function getTwitter(){
+        return $this->scopeConfig->getValue(
+            'general/store_information/twitter',
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }

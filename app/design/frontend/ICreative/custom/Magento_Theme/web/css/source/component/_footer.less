@@ -1,5 +1,202 @@
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m){}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m){
+
+    .page-footer {
+        background-color: #222529;
+        margin-top: auto;
+        padding-bottom: 25px;
+    }
+    .block.newsletter .field.newsletter {
+        max-width: none;
+    }
+    .footer.content  .footer_top {
+       flex-flow: row nowrap;
+        .col-lg-3 {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+
+        .col-lg-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+    }
+}
 
 & when (@media-common = true) {
+
+
+    .page-footer {
+        background-color: #222529;
+        margin-top: auto;
+        padding: 0;
+    }
+    .footer.content{
+        padding: 0 !important;
+    }
+
+    .footer_bottom{
+        padding: 15px 20px;
+        font-size: 13px;
+        margin: 0 10px;
+    }
+
+    .footer.content .footer_top {
+        color: #777;
+        display: flex;
+        flex-flow: column nowrap;
+
+        padding: 64px 10px 24px;
+        .col-lg-3 {
+            padding: 0 10px;
+        }
+        .col-lg-6{
+            padding: 0 10px;
+        }
+        a{
+            color: #a8a8a8;
+            text-decoration: none;
+        }
+        a:hover{
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-follow-us{
+            margin: 20px 0 30px;
+        }
+        .footer_links{
+            margin-bottom: 30px;
+        }
+        .footer-logo{
+            margin-bottom: 30px;
+        }
+        .footer-about{
+            margin: 20px 0 30px;
+        }
+    }
+
+    .footer_bottom .copyright {
+        order: 1;
+        padding: 10px 8px 10px 0;
+        text-align: left;
+        margin-right: auto;
+        flex: auto;
+        background: none;
+    }
+
+    .footer_bottom{
+        position: relative;
+    }
+
+    .footer_bottom::before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 0;
+        right: 10px;
+        border-bottom: 1px solid #313438;
+    }
+
+    .footer-section-title {
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        margin-top: 0;
+        color: white;
+    }
+
+    .share-links a:before {
+        position: absolute;
+        font-family: 'Font Awesome 5 Brands';
+        text-indent: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        line-height: 23px;
+        height: 22px;
+        width: 13px;
+        margin: auto;
+        z-index: 2;
+    }
+
+    .share-links a {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        border: 1px solid #313438;
+        box-shadow: none;
+        font-size: 14px;
+        color: white;
+        background-color: transparent;
+        transition: background-color 0.2s;
+    }
+
+    .share-links .fa-facebook:hover {
+        background-color: #3b5a9a;
+    }
+
+    .share-links .fa-twitter:hover {
+        background-color: #1aa9e1;
+    }
+
+    .share-links .fa-linkedIn:hover {
+        background-color: #0073b2;
+    }
+
+    .footer-logo > a > img {
+        filter: invert(100%);
+    }
+
+
+    .footer.content .newsletter input {
+        height: 50px;
+        margin: 0;
+        border: none;
+        border-radius: 30px;
+        padding: 0 25px;
+        background: #292c30;
+        color: #777;
+    }
+
+    .footer .block.newsletter .form.subscribe {
+        display: block;
+    }
+
+    .footer .block.newsletter .field {
+        margin-bottom: 17px;
+        float: none !important;
+    }
+
+    .block.newsletter .form.subscribe > .field, .block.newsletter .form.subscribe > .actions {
+        float: none !important;
+    }
+    .block.newsletter .field.newsletter {
+        max-width: none;
+    }
+
+    .footer .newsletter .action.subscribe {
+        height: 44px;
+        border: none;
+        border-radius: 30px;
+        font-weight: 700;
+        padding-left: 25px;
+        padding-right: 25px;
+        text-transform: uppercase;
+        font-size: 14px;
+        background-color: #65829D;
+    }
+
+    .block.newsletter .field .control {
+        text-decoration: none;
+        display: block;
+    }
+    .block.newsletter .field .control:before {
+        content: none;
+    }
 
 }

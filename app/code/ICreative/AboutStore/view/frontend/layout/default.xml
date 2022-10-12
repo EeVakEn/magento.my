@@ -7,9 +7,13 @@
 -->
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="footer">
+        <referenceContainer name="footer-top">
             <block class="Magento\Framework\View\Element\Template" name="footer_about_us_block"
-                   template="ICreative_AboutStore::footer_about.phtml" before="-"/>
+                   template="ICreative_AboutStore::footer_about.phtml" before="-">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">ICreative\AboutStore\ViewModel\About</argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>

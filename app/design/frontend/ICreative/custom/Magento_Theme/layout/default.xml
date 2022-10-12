@@ -61,6 +61,7 @@
         <move element="catalog-search-advanced-link" destination="footer_links" after="order-history-link"/>
         <move element="privacy-policy-link" destination="footer_links" after="-"/>
 
+
         <!-- Edit link label-->
         <referenceBlock name="privacy-policy-link">
             <arguments>
@@ -122,9 +123,17 @@
         </referenceBlock>
 
         <!-- Header structure -->
-<!--        <referenceContainer name="footer-container">-->
+        <move element="footer_links" destination="footer-top" after="footer_about_us_block"/>
+        <move element="form.subscribe" destination="footer-top" after="footer_links"/>
+        <move element="copyright" destination="footer-bottom"/>
+        <referenceContainer name="footer">
+            <container name="footer-top" htmlTag="div" htmlClass="footer_top">
 
-<!--        </referenceContainer>-->
+            </container>
+            <container name="footer-bottom" htmlTag="div" htmlClass="footer_bottom">
+                <referenceBlock name="form.subscribe" template="Magento_Theme::subscribe.phtml"/>
+            </container>
+        </referenceContainer>
 
     </body>
 

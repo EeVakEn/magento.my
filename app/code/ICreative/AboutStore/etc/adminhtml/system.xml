@@ -4,8 +4,20 @@
     <system>
         <section id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
             <group id="store_information" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
-                <field id="about" translate="label" type="text" sortOrder="62" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="about" translate="label" type="textarea" sortOrder="62" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>About</label>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="twitter" translate="label" type="text" sortOrder="63" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter</label>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="facebook" translate="label" type="text" sortOrder="64" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facebook</label>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="linkedin" translate="label" type="text" sortOrder="65" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>LinkedIn</label>
                     <can_be_empty>1</can_be_empty>
                 </field>
             </group>
