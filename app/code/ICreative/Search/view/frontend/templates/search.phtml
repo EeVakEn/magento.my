@@ -37,9 +37,6 @@ $configProvider = $block->getData('configProvider');
                 <form class="form minisearch" id="search_mini_form"
                       action="<?= $block->escapeUrl($helper->getResultUrl()) ?>" method="get">
                     <div class="field search">
-                        <label class="label" for="search" data-role="minisearch-label">
-                            <span><?= $block->escapeHtml(__('Search')) ?></span>
-                        </label>
                         <div class="control">
                             <input id="search" data-bind="textInput: query"
                                 <?php if ($configProvider->isSuggestionsAllowed()): ?>
@@ -83,7 +80,6 @@ $configProvider = $block->getData('configProvider');
                                 class="action search"
                                 aria-label="Search"
                         >
-                            <span><?= $block->escapeHtml(__('Search')) ?></span>
                         </button>
                     </div>
                 </form>
