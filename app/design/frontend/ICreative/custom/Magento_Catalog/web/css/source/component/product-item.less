@@ -49,4 +49,84 @@
         position: relative;
         z-index: 1;
     }
+
+    .quick-view{
+        background: #65829D;
+        display: block;
+        padding: 5px 0;
+        color: white;
+        text-transform: uppercase;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        z-index: 6;
+        text-align: center;
+        opacity: 0;
+    }
+    .products-grid .product-item-info:hover .quick-view{
+        opacity: 1;
+        padding: 20px 0;
+        transition: opacity 0.2s, padding 0.2s;
+    }
+
+    .products-grid .product-item-info .image-wrapper{
+        position: relative;
+    }
+
+     .rating-summary .rating-result:before {
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        -webkit-font-smoothing: antialiased;
+        color: #c3c5c9;
+        font-family: 'porto';
+        font-size: 12px;
+        height: 12px;
+        letter-spacing: 3px;
+        line-height: 12px;
+        content: '\e852' '\e852' '\e852' '\e852' '\e852';
+        display: block;
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+    }
+    .rating-summary .rating-result > span:before {
+        left: 0;
+        position: relative;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        -webkit-font-smoothing: antialiased;
+        color: #65829D;
+        font-family: 'porto';
+        font-size: 12px;
+        height: 12px;
+        letter-spacing: 3px;
+        line-height: 12px;
+        content: '\e852' '\e852' '\e852' '\e852' '\e852';
+        display: block;
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+    }
+
+    .product-item-name a {
+        font-weight: 400;
+        line-height: 1.35;
+        letter-spacing: -.01em;
+        margin-bottom: 0.45rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #222529;
+        display: block;
+    }
+    .product-item-name a:hover{
+        color: #65829D;
+        text-decoration: none;
+    }
 }
