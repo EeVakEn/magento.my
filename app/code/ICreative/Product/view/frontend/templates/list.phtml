@@ -20,8 +20,10 @@ use Magento\Framework\App\Action\Action;
 $_productCollection = $block->getLoadedProductCollection();
 /**
  * @var \Magento\Catalog\Helper\Image $imageHelper
- * @var \Magento\Catalog\Helper\Output $_helper\
+ * @var \Magento\Catalog\Helper\Output $_helper
+ * @var \ICreative\Product\ViewModel\Gallery $galleryViewModel
  */
+$viewModel = $block->getViewModel();
 $_helper = $block->getData('outputHelper');
 ?>
 <?php if (!$_productCollection->count()): ?>
@@ -61,28 +63,33 @@ $_helper = $block->getData('outputHelper');
                          data-container="product-<?= /* @noEscape */
                          $viewMode ?>">
                         <?php
-                        $productImage = $block->getImage($_product, $imageDisplayArea);
-                        if ($pos != null) {
-                            $position = 'left:' . $productImage->getWidth() . 'px;'
-                                . 'top:' . $productImage->getHeight() . 'px;';
-                        }
 
+
+                        $gallery = $viewModel->addGallery($_product);
+                        $images = $_product->getMediaGalleryImages();
+                        $productImage = $viewModel->getImage($_product);
+                        $productImage2 = $images->getLastItem()->getData('url');
                         ?>
                         <?php // Product Image ?>
                         <div class="image-wrapper">
                             <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
                                class="product photo product-item-photo"
                                tabindex="-1">
-                                <?= $productImage->toHtml() ?>
-                                <?php
-                                $images = $_product->getMediaGalleryImages();
-                                foreach ($images as $image) {
-                                    echo "<pre>";print_r($image->getData());
-                                }
-                                ?>
+                                <img class="product-image-photo default"
+                                     src="<?= $escaper->escapeHtmlAttr($productImage) ?>"
+                                     width="300px"
+                                     height="300px"
+                                />
+                                <?php if($images->getSize()) : ?>
+                                <img class="product-image-photo hover"
+                                     src="<?= $escaper->escapeHtmlAttr($productImage2) ?>"
+                                     width="300px"
+                                     height="300px"
+                                />
+                                <?php endif; ?>
                             </a>
                             <div class="quick-view">
-                                quickview
+                                quick view
                             </div>
                         </div>
 
@@ -193,6 +200,10 @@ $_helper = $block->getData('outputHelper');
                 }
             }
         }
+
+
+
+
 
 
 
