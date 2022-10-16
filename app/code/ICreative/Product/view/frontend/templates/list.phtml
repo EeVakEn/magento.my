@@ -77,20 +77,45 @@ $_helper = $block->getData('outputHelper');
                                tabindex="-1">
                                 <img class="product-image-photo default"
                                      src="<?= $escaper->escapeHtmlAttr($productImage) ?>"
-                                     width="300px"
-                                     height="300px"
+                                     height="300"
+                                     width="300"
                                 />
-                                <?php if($images->getSize()) : ?>
-                                <img class="product-image-photo hover"
-                                     src="<?= $escaper->escapeHtmlAttr($productImage2) ?>"
-                                     width="300px"
-                                     height="300px"
-                                />
+
+                                <?php if ($images->getSize()>1): ?>
+                                    <img class="product-image-photo hover"
+                                         src="<?= $escaper->escapeHtmlAttr($productImage2) ?>"
+                                         height="300"
+                                         width="300"
+                                    />
                                 <?php endif; ?>
                             </a>
-                            <div class="quick-view">
+
+                            <?php
+                            $simplePrice = 0;
+                            $_savingPercent = 0;
+                            if ($_product->getTypeId() == "simple") {
+                                $simplePrice = $_product->getPrice();
+                            } else {
+                                $_children = $_product->getTypeInstance()->getUsedProducts($_product);
+                                foreach ($_children as $child) {
+                                    $simplePrice = $child->getPrice();
+                                    break;
+                                }
+                            }
+
+                            $_finalPrice = $_product->getFinalPrice();
+                            $_price = $simplePrice;
+                            ?>
+                            <?php if ($_finalPrice < $_price): ?>
+                                <div class="product-labels">
+                                    <div class="product-label sale-label">
+                                        <?= $escaper->escapeHtml(__('-' . (100 - round(($_finalPrice / $_price) * 100)) . '%')) ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <a class="quick-view">
                                 quick view
-                            </div>
+                            </a>
                         </div>
 
                         <div class="product details product-item-details">
@@ -103,9 +128,24 @@ $_helper = $block->getData('outputHelper');
                                 </a>
                             </strong>
                             <?= $block->getReviewsSummaryHtml($_product, $templateType, true) ?>
+
+
                             <?= /* @noEscape */
                             $block->getProductPrice($_product) ?>
-
+                            <?php if ($showDescription): ?>
+                                <div class="product description product-item-description">
+                                    <?= /* @noEscape */
+                                    $_helper->productAttribute(
+                                        $_product,
+                                        $_product->getShortDescription(),
+                                        'short_description'
+                                    ) ?>
+                                    <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
+                                       title="<?= /* @noEscape */
+                                       $_productNameStripped ?>"
+                                       class="action more"><?= $escaper->escapeHtml(__('Learn More')) ?></a>
+                                </div>
+                            <?php endif; ?>
 
                             <div class="product-item-inner">
                                 <div class="product actions product-item-actions">
@@ -163,20 +203,7 @@ $_helper = $block->getData('outputHelper');
                                             'product-item-info_' . $_product->getId() . ' div.actions-secondary'
                                         ) : '' ?>
                                 </div>
-                                <?php if ($showDescription): ?>
-                                    <div class="product description product-item-description">
-                                        <?= /* @noEscape */
-                                        $_helper->productAttribute(
-                                            $_product,
-                                            $_product->getShortDescription(),
-                                            'short_description'
-                                        ) ?>
-                                        <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
-                                           title="<?= /* @noEscape */
-                                           $_productNameStripped ?>"
-                                           class="action more"><?= $escaper->escapeHtml(__('Learn More')) ?></a>
-                                    </div>
-                                <?php endif; ?>
+
                             </div>
                         </div>
                     </div>
@@ -200,6 +227,9 @@ $_helper = $block->getData('outputHelper');
                 }
             }
         }
+
+
+
 
 
 
