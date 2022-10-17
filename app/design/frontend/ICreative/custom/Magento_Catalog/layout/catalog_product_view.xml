@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="product.info.main" destination="container" after="product.info.media"/>
+        <move element="product.info.details" destination="bottom.product.info" before="-"/>
+        <move element="product.info.review" destination="product.info.details" after="product.info.description"/>
+
+        <block class="Magento\Catalog\Block\Product\View" name="sizes.grid" as="sizes"
+               template="product/view/sizes-grid.phtml" group="detailed_info" after="-">
+            <arguments>
+                <argument translate="true" name="title" xsi:type="string">Sizes Grid</argument>
+            </arguments>
+        </block>
+        <move element="sizes.grid" destination="product.info.details" after="-"/>
+        <move element="product.info.media" destination="top.product.info"/>
+        <move element="product.info.main" destination="top.product.info"/>
+        <referenceBlock name="product.attributes" remove="true"/>
+        <referenceContainer name="content">
+            <container name="top.product.info"/>
+            <container name="bottom.product.info" htmlTag="div" htmlClass="product-detail"/>
+        </referenceContainer>
+    </body>
+</page>

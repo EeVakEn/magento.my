@@ -38,12 +38,12 @@ $_helper = $block->getData('outputHelper');
         $viewMode = 'grid';
         $imageDisplayArea = 'category_page_grid';
         $showDescription = false;
-        $templateType = 'myReview';
+        $templateType = \Magento\Review\Block\Product\ReviewRenderer::SHORT_VIEW;
     } else {
         $viewMode = 'list';
         $imageDisplayArea = 'category_page_list';
         $showDescription = true;
-        $templateType = 'myReview';
+        $templateType = \Magento\Review\Block\Product\ReviewRenderer::SHORT_VIEW;
     }
     /**
      * Position for actions regarding image size changing in vde if needed
