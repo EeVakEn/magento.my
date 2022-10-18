@@ -2,14 +2,21 @@ define([
     'jquery'
 ], function ($) {
     'use strict';
-    return function ($config){
-        alert('hi');
-        $('#qty-inc').click(()=>{
-            $('#qty').value++;
-        })
-        $('#qty-dec').click(()=>{
-            !(isNaN($('#qty').val()) || $('#qty').val() < 2) ? $('#qty').value = 1 : $('#qty').value--;
-        })
+    return function qty(){
+        $('#qty-inc').on('click',function(){
+            let $qty=$('#qty');
+            let currentVal = parseInt($qty.val());
+            if (!isNaN(currentVal)) {
+                $qty.val(currentVal + 1);
+            }
+        });
+        $('#qty-dec').on('click',function(){
+            let $qty=$('#qty');
+            let currentVal = parseInt($qty.val());
+            if (!isNaN(currentVal) && currentVal > 1) {
+                $qty.val(currentVal - 1);
+            }
+        });
     }
 
 });

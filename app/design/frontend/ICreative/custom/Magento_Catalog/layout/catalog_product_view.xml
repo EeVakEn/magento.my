@@ -21,6 +21,9 @@
         <move element="sizes.grid" destination="product.info.details" after="-"/>
         <move element="product.info.media" destination="top.product.info"/>
         <move element="product.info.main" destination="top.product.info"/>
+        <move element="product.info.addto" destination="product.info.addtocart.additional" after="-"/>
+        <move element="product.info.stock.sku" destination="product.info.main" before="product.info"/>
+        <referenceBlock name="product.info.configurable.catalog_inventory_stockqty_default" remove="true"/>
         <referenceBlock name="product.attributes" remove="true"/>
         <referenceContainer name="content">
             <container name="top.product.info"/>

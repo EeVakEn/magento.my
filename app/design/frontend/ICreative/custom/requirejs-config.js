@@ -1,7 +1,7 @@
 var config = {
-    "map": {
+    map: {
         "*": {
-            "qty-changer": "Magento_Catalog/js/qty-change",
+            qty_changer: "Magento_Catalog/js/qty-change",
         }
     }
 };
